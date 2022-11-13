@@ -42,7 +42,7 @@ function renderCountriesList({flags, name}){
             </li>`;
 }
 function renderCountryInfo({name, flags, capital, population, languages}){
-    return `<li class="country-listInfo">
+    return `<li class="country-firstInfo">
     <div class="country-info">
     <img class="country-flagInfo" src="${flags.svg}"/>
     <h2 class="country-listName">${name.official}</h2>
