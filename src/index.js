@@ -25,9 +25,9 @@ function clear (){
 function renderСountryList(responseAPI){
     console.log(responseAPI);
     clear();
-    if (responseAPI.lenght > 10){
+    if (responseAPI.length > 10){
         Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
-    }else if (responseAPI.lenght === 1){
+    }else if (responseAPI.length === 1){
         countryInfo.innerHTML = renderCountryInfo(responseAPI[0]);
     }else {
         const renderListCountry = responseAPI.map(country => renderCountriesList(country)).join('');
