@@ -2,7 +2,7 @@ import './css/styles.css';
 import debounce from 'lodash.debounce';
 import Notiflix from 'notiflix';
 import {fetchCountries} from "./fetchCountries";
-fetchCountries('ukraine');
+// fetchCountries('ukraine');
 
 const input = document.querySelector('input#search-box');
 const countryList = document.querySelector('.country-list');
@@ -25,11 +25,9 @@ function clear (){
 function renderСountryList(responseAPI){
     console.log(responseAPI);
     clear();
-    // if (responseAPI.length > 10){
-    //     Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
-    // }
-    //  else
-      if (responseAPI.length === 1){
+    if (responseAPI.length > 10){
+        Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
+    } else if (responseAPI.length === 1){
         countryInfo.innerHTML = renderCountryInfo(responseAPI[0]);
     } else {
         const renderListCountry = responseAPI.map(country => renderCountriesList(country)).join('');
@@ -39,7 +37,7 @@ function renderСountryList(responseAPI){
 
 function renderCountriesList({flags, name}){
     return `<li class="country-listInfo">
-            <img class="country-flag" src="${flags.svg}"/>
+            <img class="country-flag" src="${flags.svg}" width="100" height="100"/>
             <h2 class="country-listName">${name.official}</h2>
             </li>`;
 }
@@ -47,7 +45,7 @@ function renderCountryInfo({name, flags, capital, population, languages}){
     return `<li class="country-firstInfo">
             <div class="country-infoList">
 
-    <img class="country-flagInfo" src="${flags.svg}"/>
+    <img class="country-flagInfo" src="${flags.svg}" width="300" height="300"/>
     <h2 class="country-listName">${name.official}</h2>
 
     <p><b> capital:</b> ${capital}</p>
