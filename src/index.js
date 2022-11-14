@@ -4,7 +4,7 @@ import Notiflix from 'notiflix';
 import {fetchCountries} from "./fetchCountries";
 fetchCountries('ukraine');
 
-const input = document.querySelector('#search-box');
+const input = document.querySelector('input#search-box');
 const countryList = document.querySelector('.country-list');
 const countryInfo = document.querySelector('.country-info');
 const DEBOUNCE_DELAY = 300;
@@ -25,11 +25,13 @@ function clear (){
 function renderСountryList(responseAPI){
     console.log(responseAPI);
     clear();
-    if (responseAPI.length > 10){
-        Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
-    }else if (responseAPI.length === 1){
+    // if (responseAPI.length > 10){
+    //     Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
+    // }
+    //  else
+      if (responseAPI.length === 1){
         countryInfo.innerHTML = renderCountryInfo(responseAPI[0]);
-    }else {
+    } else {
         const renderListCountry = responseAPI.map(country => renderCountriesList(country)).join('');
         countryList.insertAdjacentHTML('beforeend', renderListCountry);
     }
@@ -43,7 +45,8 @@ function renderCountriesList({flags, name}){
 }
 function renderCountryInfo({name, flags, capital, population, languages}){
     return `<li class="country-firstInfo">
-    <div class="country-info">
+            <div class="country-infoList">
+
     <img class="country-flagInfo" src="${flags.svg}"/>
     <h2 class="country-listName">${name.official}</h2>
 
